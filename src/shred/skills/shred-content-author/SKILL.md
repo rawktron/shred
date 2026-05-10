@@ -1,11 +1,11 @@
 ---
-name: yas-content-author
-description: Use when converting notes, drafts, outlines, or pasted source material into YAS Markdown content files with TOML frontmatter.
+name: shred-content-author
+description: Use when converting notes, drafts, outlines, or pasted source material into Shred Markdown content files with TOML frontmatter.
 ---
 
-# YAS Content Author
+# Shred Content Author
 
-Create or update content files for a YAS site.
+Create or update content files for a Shred project.
 
 ## Workflow
 

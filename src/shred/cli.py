@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""YAS: Yet Another static site generator.
+"""Shred: a tiny no-bullshit static site generator.
 
 Design goals:
 - editable Markdown source
@@ -7,7 +7,7 @@ Design goals:
 - Jinja2 templates
 - no Node, no npm, no Hugo, no Astro
 
-Run: yas
+Run: shred
 Output: dist/
 """
 from __future__ import annotations
@@ -480,7 +480,7 @@ def new_entry(collection_name: str, slug: str, title: str, root: Path | str | No
 
 
 def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(description="YAS: Yet Another static site generator.")
+    parser = argparse.ArgumentParser(description="Shred: a tiny no-bullshit static site generator.")
     parser.add_argument("--root", default=".", help="site root containing content/, templates/, static/, and site.toml")
     sub = parser.add_subparsers(dest="command")
     sub.add_parser("build", help="Build the site into dist/")
