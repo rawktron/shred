@@ -130,13 +130,15 @@ short_date   truncate a date string to YYYY-MM-DD
 
 When `base_url` is set in `site.toml`, Shred writes `dist/sitemap.xml` automatically (excludes `/404.html`).
 
-## Packaged Skill
+## Skill
 
-The Shred content authoring skill is included as package data:
+A Claude Code skill for authoring Shred content is included in this repo:
 
 ```txt
-shred/skills/shred-content-author/SKILL.md
+skills/shred-content-author/SKILL.md
 ```
+
+Install it with `claude skill install` from the repo root, or copy it to your Claude skills directory.
 
 ## Author
 

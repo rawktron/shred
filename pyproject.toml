@@ -20,5 +20,3 @@ shred = "shred.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
-[tool.setuptools.package-data]
-shred = ["skills/shred-content-author/SKILL.md"]
