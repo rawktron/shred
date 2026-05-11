@@ -454,6 +454,17 @@ def build(root: Path | str | None = None) -> None:
     print(f"Built {len(routes)} pages into {paths.dist.relative_to(paths.root)}/")
 
 
+def serve(port: int = 8000, root: Path | str | None = None) -> None:
+    import http.server
+    import os
+    paths = SitePaths.from_root(root)
+    os.chdir(paths.dist)
+    handler = http.server.SimpleHTTPRequestHandler
+    with http.server.HTTPServer(("", port), handler) as httpd:
+        print(f"Serving {paths.dist.relative_to(paths.root)}/ at http://localhost:{port}/")
+        httpd.serve_forever()
+
+
 def new_entry(collection_name: str, slug: str, title: str, root: Path | str | None = None) -> None:
     """Tiny convenience command: create content/foo/bar.md from a title."""
     paths = SitePaths.from_root(root)
@@ -484,6 +495,8 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--root", default=".", help="site root containing content/, templates/, static/, and site.toml")
     sub = parser.add_subparsers(dest="command")
     sub.add_parser("build", help="Build the site into dist/")
+    s = sub.add_parser("serve", help="Serve dist/ over HTTP for local preview")
+    s.add_argument("--port", type=int, default=8000, help="port to listen on (default: 8000)")
     n = sub.add_parser("new", help="Create a new Markdown content file")
     n.add_argument("collection", help="content collection, e.g. posts/projects/notes")
     n.add_argument("slug", help="filename slug, e.g. fang")
@@ -492,6 +505,8 @@ def main(argv: list[str] | None = None) -> None:
     args = parser.parse_args(argv)
     if args.command in {None, "build"}:
         build(args.root)
+    elif args.command == "serve":
+        serve(args.port, args.root)
     elif args.command == "new":
         new_entry(args.collection, args.slug, args.title, args.root)
     else:
